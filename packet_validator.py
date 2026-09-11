@@ -89,19 +89,19 @@ def print_report(packet: dict, label: str = "Packet"):
     print(f"  JSON: {json.dumps(packet, ensure_ascii=False)}")
     try:
         validate_packet(packet)
-        print("  Validation: ✅  VALID")
+        print("  Validation: [VALID]")
     except PacketValidationError as e:
-        print(f"  Validation: ❌  INVALID — {e}")
+        print(f"  Validation: [INVALID] -- {e}")
         return
 
     report = packet_size_report(packet)
     print(f"\n  Size Breakdown (for Demo Slide):")
-    print(f"  ┌────────────────────────────────────────┐")
-    print(f"  │ This packet          : {report['packet_bytes']:>6} bytes      │")
-    print(f"  │ Opus equivalent      : {report['opus_equivalent_range']:>11} bytes │")
-    print(f"  │ Raw PCM (3s, 16kHz)  : {report['raw_pcm_3sec_bytes']:>6} bytes      │")
-    print(f"  │ Savings vs raw PCM   : {report['compression_vs_raw']:>12}        │")
-    print(f"  └────────────────────────────────────────┘")
+    print(f"  +----------------------------------------+")
+    print(f"  | This packet          : {report['packet_bytes']:>6} bytes      |")
+    print(f"  | Opus equivalent      : {report['opus_equivalent_range']:>11} bytes |")
+    print(f"  | Raw PCM (3s, 16kHz)  : {report['raw_pcm_3sec_bytes']:>6} bytes      |")
+    print(f"  | Savings vs raw PCM   : {report['compression_vs_raw']:>12}        |")
+    print(f"  +----------------------------------------+")
 
 
 # ---------------------------------------------------------------------------

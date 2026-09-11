@@ -194,7 +194,7 @@ def run_demo():
     passed = 0
     for text, amp, expected in _DEMO_CASES:
         result = detector.classify(text=text, amplitude_rms=amp)
-        ok = "✅" if result.level == expected else "❌"
+        ok = "[PASS]" if result.level == expected else "[FAIL]"
         if result.level == expected:
             passed += 1
         print(
