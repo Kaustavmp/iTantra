@@ -1,0 +1,66 @@
+# iTantra Test Sentence Set
+# ===========================
+# Format: filename|expected_text
+#
+# Place matching .wav recordings in this folder (16kHz mono, 16-bit PCM).
+# To record using SoX:  sox -d -r 16000 -c 1 -b 16 hi_01.wav trim 0 4
+# To record using ffmpeg: ffmpeg -f dshow -i audio="Microphone Array" -ar 16000 -ac 1 hi_01.wav
+#
+# Categories covered:
+#   normal   — routine operational communication
+#   emergency— FIRE/HELP/SOS type utterances that trigger urgency=high
+#   numbers  — sector, gate, frequency numbers that test digit recognition
+#   names    — proper nouns that challenge STT vocabulary
+#   noisy    — same sentences recorded with background noise (fan/crowd)
+#
+# Hindi files prefixed hi_, English files prefixed en_, noisy variants _noisy
+
+# --- Hindi: Normal ---
+hi_normal_01.wav|meeting kal sham tak postpone ho gayi hai
+hi_normal_02.wav|kripya sector satra gate number chaar mein report karein
+hi_normal_03.wav|control room se sampark karein
+hi_normal_04.wav|sab kuch theek hai koi problem nahi
+
+# --- Hindi: Emergency ---
+hi_emerg_01.wav|aag lagi hai poorvi gate ke paas
+hi_emerg_02.wav|madad chahiye station ke paas koi ghaayal hai
+hi_emerg_03.wav|bachao bachao abhi nikalо yahaan se
+hi_emerg_04.wav|aapda aa gayi turant madad bhejo
+
+# --- Hindi: Numbers ---
+hi_num_01.wav|frequency teen point paanch megahertz par set karein
+hi_num_02.wav|dono team baees minute mein pahunch jaayenge
+hi_num_03.wav|sector saat mein das log abhi bhi maujood hain
+
+# --- Hindi: Names ---
+hi_name_01.wav|doctor raghavendra ko control room mein bulao
+hi_name_02.wav|Sharma ji ne report bhej di hai
+
+# --- Hindi: Noisy (record with fan/noise in background) ---
+hi_noisy_01.wav|aag lagi hai poorvi gate ke paas
+hi_noisy_02.wav|madad chahiye abhi
+
+# --- English: Normal ---
+en_normal_01.wav|the meeting has been postponed to tomorrow evening
+en_normal_02.wav|please report to sector seventeen gate number four
+en_normal_03.wav|all systems are operational no anomalies detected
+en_normal_04.wav|the report will be ready by end of day
+
+# --- English: Emergency ---
+en_emerg_01.wav|there is a fire near the eastern gate help needed immediately
+en_emerg_02.wav|SOS we need medical assistance at checkpoint three
+en_emerg_03.wav|emergency evacuate the building now
+en_emerg_04.wav|mayday mayday we have a critical system failure
+
+# --- English: Numbers ---
+en_num_01.wav|set frequency to three point five megahertz
+en_num_02.wav|both teams will arrive in twenty two minutes
+en_num_03.wav|there are ten personnel still in sector seven
+
+# --- English: Names ---
+en_name_01.wav|contact Doctor Raghavendra at the control room
+en_name_02.wav|Sharma has submitted the incident report
+
+# --- English: Noisy (record with fan/noise in background) ---
+en_noisy_01.wav|there is a fire near the eastern gate
+en_noisy_02.wav|help we need assistance immediately

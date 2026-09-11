@@ -1,0 +1,69 @@
+# iTantra — .gitignore
+
+# =====================
+# Python dev machine
+# =====================
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+env/
+.env
+
+# Test audio files — large binary files, don't commit recordings
+test_sentences/*.wav
+test_sentences/*.mp3
+test_sentences/*.flac
+
+# =====================
+# Android
+# =====================
+*.iml
+.gradle/
+local.properties
+.idea/
+android/.idea/
+android/captures/
+android/.externalNativeBuild/
+android/.cxx/
+
+# Build outputs
+android/app/build/
+android/build/
+*.apk
+*.aab
+*.aar
+
+# Android model assets — too large for Git (download via SETUP.md instead)
+android/app/src/main/assets/whisper*/
+android/app/src/main/assets/vosk*/
+android/app/src/main/assets/piper*/
+
+# Keystore
+*.jks
+*.keystore
+
+# =====================
+# macOS / Windows / Linux
+# =====================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =====================
+# IDE
+# =====================
+.vscode/
+*.swp
+*.swo
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

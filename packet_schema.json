@@ -1,0 +1,50 @@
+{
+  "$comment": "iTantra Semantic Packet — the entire payload sent between phones. Typical size: 120-180 bytes.",
+  "type": "object",
+  "required": ["msg_id", "lang", "text", "urgency", "ts"],
+  "properties": {
+    "msg_id": {
+      "type": "string",
+      "description": "Short unique ID per utterance, e.g. first 8 chars of a UUID",
+      "example": "a1b2c3d4"
+    },
+    "lang": {
+      "type": "string",
+      "description": "ISO 639-1 language code of the utterance",
+      "enum": ["hi", "en", "gu", "mr", "kn", "ml", "ta", "te", "or", "bn"]
+    },
+    "text": {
+      "type": "string",
+      "description": "Recognized text from STT",
+      "example": "madad chahiye station ke paas"
+    },
+    "urgency": {
+      "type": "string",
+      "enum": ["normal", "high"],
+      "description": "high = emergency keyword detected or high amplitude/urgent speech pattern; triggers alert playback on receiver"
+    },
+    "confidence": {
+      "type": "number",
+      "description": "STT confidence score, 0.0-1.0. Optional but recommended for the low-confidence 'please repeat' flow.",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "ts": {
+      "type": "integer",
+      "description": "Unix timestamp in milliseconds, captured at start of utterance. Used for end-to-end latency measurement."
+    }
+  },
+  "example_packet": {
+    "msg_id": "a1b2c3d4",
+    "lang": "hi",
+    "text": "madad chahiye station ke paas",
+    "urgency": "high",
+    "confidence": 0.91,
+    "ts": 1725620000123
+  },
+  "size_comparison_for_demo_slide": {
+    "raw_pcm_3sec_16khz_16bit_mono_bytes": 96000,
+    "opus_compressed_equivalent_bytes": "4500-9000",
+    "this_packet_bytes": "120-180"
+  }
+}

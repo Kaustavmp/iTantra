@@ -1,0 +1,19 @@
+﻿# Python dependencies for iTantra dev machine (benchmarking + prototyping)
+# Install with: pip install -r requirements.txt
+
+# --- Core STT benchmarking ---
+faster-whisper==1.0.3
+ctranslate2>=4.0
+
+# --- Audio processing ---
+soundfile>=0.12.1
+numpy>=1.24.0
+scipy>=1.11.0
+
+# --- Testing & quality ---
+pytest>=8.0.0
+pytest-cov>=5.0.0
+
+# --- Utilities ---
+tqdm>=4.66.0
+colorama>=0.4.6
