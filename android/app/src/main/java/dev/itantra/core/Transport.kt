@@ -105,7 +105,7 @@ class LocalSocketTransport(
         }
     }
 
-    override suspend fun send(packet: SemanticPacket) = withContext(Dispatchers.IO) {
+    override suspend fun send(packet: SemanticPacket) = withContext<Unit>(Dispatchers.IO) {
         try {
             val w = writer ?: run {
                 // Server side: set writer lazily after connection is accepted

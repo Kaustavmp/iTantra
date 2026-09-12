@@ -36,7 +36,7 @@ EMERGENCY_KEYWORDS = {
     "attack", "explosion", "flood", "crash", "injured", "medic",
     # Hindi (transliterated)
     "aag", "bachao", "madad", "khatra", "sankat", "haadsa",
-    "aapda", "bhaago", "chot", "bezosh", "nikalो",
+    "aapda", "bhaago", "chot", "behosh", "nikal", "niklo",
     # Hindi (Devanagari — matches if STT returns native script)
     "आग", "बचाओ", "मदद", "खतरा", "संकट", "हादसा",
     "आपदा", "भागो", "चोट", "बेहोश",

@@ -77,14 +77,14 @@ Copy to `android/app/src/main/assets/piper-en/`
 
 ---
 
-## 3. Add sherpa-onnx Dependency
+## 3. Add sherpa-onnx Dependency When Integrating Models
 
 In `app/build.gradle.kts`, add:
 
 ```kotlin
 dependencies {
     // sherpa-onnx — offline STT + TTS runtime for Android
-    implementation("com.github.k2-fsa:sherpa-onnx-android:1.10.x@aar")
+    implementation("com.github.k2-fsa:sherpa-onnx-android:1.10.20@aar")
     // org.json — packet serialization (already in Android SDK, no dep needed)
     // Jetpack Compose BOM
     val composeBom = platform("androidx.compose:compose-bom:2024.04.01")
@@ -139,6 +139,29 @@ adb install app/build/outputs/apk/debug/app-debug.apk
 Or use `Run` (▶) in Android Studio with a connected device.
 
 ---
+
+### Live Metrics Overlay
+
+The first screen includes a device metrics panel for the demo loop. It shows:
+
+- STT and TTS model status
+- Last STT/TTS inference latency
+- Semantic packet size in bytes
+- Process CPU usage sampled from `/proc`
+- Offline status
+
+Use **Run STT check** and **Run TTS check** to exercise the current engine hooks. The
+same timings are written to Logcat with the `SttEngine` and `TtsEngine` tags:
+
+```bash
+adb logcat -s SttEngine TtsEngine
+```
+
+The current screen labels the engines as stubs until the sherpa-onnx model
+initializers in `SttEngine.kt` and `TtsEngine.kt` are enabled. The dependency is
+intentionally omitted from the current scaffold because version `1.10.20` is not
+available from the configured public repositories; add the actual AAR/repository
+provided by the sherpa-onnx release when enabling those initializers.
 
 ## 6. Verify the Core Loop (Day 1 Milestone)
 

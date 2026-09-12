@@ -24,7 +24,7 @@ hi_normal_04.wav|sab kuch theek hai koi problem nahi
 # --- Hindi: Emergency ---
 hi_emerg_01.wav|aag lagi hai poorvi gate ke paas
 hi_emerg_02.wav|madad chahiye station ke paas koi ghaayal hai
-hi_emerg_03.wav|bachao bachao abhi nikalо yahaan se
+hi_emerg_03.wav|bachao bachao abhi niklo yahaan se
 hi_emerg_04.wav|aapda aa gayi turant madad bhejo
 
 # --- Hindi: Numbers ---

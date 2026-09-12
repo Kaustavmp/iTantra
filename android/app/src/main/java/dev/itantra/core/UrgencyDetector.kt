@@ -32,12 +32,9 @@ class UrgencyDetector(
         val matched = mutableListOf<String>()
 
         // --- Signal 1: keyword detection ---
-        val lower = text.lowercase(Locale.ROOT)
-        for (kw in EMERGENCY_KEYWORDS) {
-            // word-boundary check using simple split (avoids regex overhead on each call)
-            if (lower.contains(kw)) {
-                matched += kw
-            }
+        val matches = KEYWORD_REGEX.findAll(text)
+        for (match in matches) {
+            matched.add(match.value.lowercase(Locale.ROOT))
         }
         if (matched.isNotEmpty()) {
             triggers += "keyword:${matched.joinToString(",").uppercase()}"
@@ -83,6 +80,19 @@ class UrgencyDetector(
             return sqrt(sum / length).toFloat().coerceIn(0f, 1f)
         }
 
+        /**
+         * Compute RMS amplitude from FloatArray PCM samples [-1.0, 1.0].
+         */
+        fun computeRms(buffer: FloatArray, length: Int = buffer.size): Float {
+            if (length == 0) return 0f
+            var sum = 0.0
+            for (i in 0 until length) {
+                val sample = buffer[i].toDouble()
+                sum += sample * sample
+            }
+            return sqrt(sum / length).toFloat().coerceIn(0f, 1f)
+        }
+
         // Multilingual emergency keywords (lowercase for matching)
         val EMERGENCY_KEYWORDS = setOf(
             // English
@@ -91,9 +101,14 @@ class UrgencyDetector(
             "attack", "explosion", "flood", "crash", "injured", "medic",
             // Hindi (transliterated)
             "aag", "bachao", "madad", "khatra", "sankat", "haadsa",
-            "aapda", "bhaago", "chot",
+            "aapda", "bhaago", "chot", "behosh", "nikal", "niklo",
             // Hindi Devanagari (returned by Whisper when recognizing native script)
-            "आग", "बचाओ", "मदद", "खतरा", "संकट", "हादसा", "आपदा", "भागो",
+            "आग", "बचाओ", "मदद", "खतरा", "संकट", "हादसा", "आपदा", "भागो", "चोट", "बेहोश",
         )
+
+        private val KEYWORD_REGEX: Regex by lazy {
+            val pattern = "\\b(" + EMERGENCY_KEYWORDS.joinToString("|") { Regex.escape(it) } + ")\\b"
+            Regex(pattern, RegexOption.IGNORE_CASE)
+        }
     }
 }
